@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  web:
+    build: docker/dev
+    volumes:
+      - .:/openhanditour:delegated
+      - ~/.ssh:/openhanditour/.ssh
+      - ~/.composer:/openhanditour/.composer
+    ports:
+      - 80:80
+    links:
+      - db
+
+  db:
+    build: docker/postgres
+    environment:
+      - POSTGRES_USER=openhanditour
+      - POSTGRES_PASSWORD=openhanditour
+      - POSTGRES_DB=openhanditour
+    ports:
+      - 5432:5432
