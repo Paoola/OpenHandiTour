@@ -4,7 +4,7 @@
     },
 
     "[yaml]": {
-        "editor.tabSize": 4
+        "editor.tabSize": 2
     },
     
     "git.ignoreLimitWarning": true
