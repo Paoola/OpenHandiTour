@@ -27,3 +27,14 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\Graph\Mutation\:
+        resource: '../src/Graph/Mutation'
+        tags: ['overblog_graphql.mutation']
+
+    App\Graph\Resolver\:
+        resource: '../src/Graph/Resolver'
+        tags: ['overblog_graphql.resolver']
+
+    App\Graph\Type\:
+        resource: '../src/Graph/Type'
+        tags: ['overblog_graphql.type']
