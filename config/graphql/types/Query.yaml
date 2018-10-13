@@ -1,0 +1,14 @@
+Query:
+  type: "object"
+  config:
+    fields:
+      user:
+        type: "User"
+        args:
+          id:
+            type: "Uuid!"
+        resolve: "@=resolver('entity', ['User', args['id']])"
+
+      users:
+        type: "[User]!"
+        resolve: "@=resolver('entities', ['User'])"
