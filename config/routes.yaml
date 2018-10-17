@@ -1,7 +1,0 @@
-admin_routes:
-    resource: 'admin_route_loader:loadRoutes'
-    type: service
-
-app_extra:
-    resource: .
-    type: extra

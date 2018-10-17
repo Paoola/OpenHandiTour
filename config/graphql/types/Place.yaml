@@ -1,0 +1,13 @@
+
+Place:
+  type: "object"
+  config:
+    fields:
+      id:
+        type: "Uuid!"
+      name:
+        type: "String!"
+      address:
+        type: "String!"
+      handicap_moteur:
+        type: "String!"

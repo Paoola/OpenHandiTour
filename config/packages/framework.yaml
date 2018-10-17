@@ -1,24 +1,16 @@
 framework:
-    serializer:
-        enabled: true
-    #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
     secret: '%env(APP_SECRET)%'
-    router:
-        resource: '%kernel.project_dir%/app/config/routing.yml'
-        strict_requirements: ~
-    form: ~
-    csrf_protection: ~
-    validation: { enable_annotations: true }
-    #serializer: { enable_annotations: true }
-    trusted_hosts: ~
+    default_locale: '%locale%'
+    #csrf_protection: true
+    #http_method_override: true
+
+    # Enables session support. Note that the session will ONLY be started if you read or write from it.
+    # Remove or comment this section to explicitly disable session support.
     session:
-        # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
-        handler_id: session.handler.native_file
-        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
-    fragments: ~
-    http_method_override: true
-    assets: ~
+        handler_id: ~
+
+    #esi: true
+    #fragments: true
     php_errors:
         log: true
 

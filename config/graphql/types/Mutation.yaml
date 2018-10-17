@@ -1,0 +1,23 @@
+Mutation:
+  type: "object"
+  config:
+    fields:
+      user_signup:
+        type: "UserPayload!"
+        args:
+          input:
+            type: "SignupCredentials!"
+        resolve: "@=mutation('signup', [args['input']])"
+        description: >
+          Sign up User & return itself.
+
+      user_edit:
+        type: "User!"
+        args:
+            user:
+              type: "UserInput!"
+            userId:
+              type: "Uuid"
+        resolve: "@=mutation('userEdit', [args['user'], args['userId']])"
+        description: >
+          Edit User infos.
