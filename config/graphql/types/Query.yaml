@@ -12,3 +12,7 @@ Query:
       users:
         type: "[User]!"
         resolve: "@=resolver('entities', ['User'])"
+
+      place:
+        type: "[Place]!"
+        resolve: "@=resolver('entities', ['Place'])"

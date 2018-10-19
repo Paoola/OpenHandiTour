@@ -21,3 +21,11 @@ Mutation:
         resolve: "@=mutation('userEdit', [args['user'], args['userId']])"
         description: >
           Edit User infos.
+
+MutationSuccess:
+    type: object
+    config:
+        fields:
+            NewPlace:
+                type: "Place"
+                resolve: "@=mutation('NewPlace')"
