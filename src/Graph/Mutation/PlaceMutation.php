@@ -20,19 +20,20 @@ class PlaceMutation implements MutationInterface, AliasedInterface
     public static function getAliases(): array
     {
         return [
-            'resolve' => 'NewPlace',
+            'new' => 'placeNew',
         ];
     }
 
-    public function resolve()
+    public function new(array $input)
     {
         $place = new Place();
-        $place->setName('name');
-        $place->setAddress('address');
-        $place->setHandicapMoteur('handicap_moteur');
+        $place->setName($input['name']);
+        $place->setAddress($input['address']);
+        $place->setHandicapMoteur($input['handicap_moteur']);
 
         $this->em->persist($place);
         $this->em->flush();
-        return ['content' => 'ok'];
+
+        return $place;
     }
 }

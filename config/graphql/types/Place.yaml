@@ -10,3 +10,14 @@ Place:
         type: "String!"
       handicap_moteur:
         type: "String!"
+
+PlaceInput:
+  type: "input-object"
+  config:
+    fields:
+      name:
+        type: "String!"
+      address:
+        type: "String!"
+      handicap_moteur:
+        type: "String!"

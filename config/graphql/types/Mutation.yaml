@@ -22,10 +22,11 @@ Mutation:
         description: >
           Edit User infos.
 
-MutationSuccess:
-    type: object
-    config:
-        fields:
-            NewPlace:
-                type: "Place"
-                resolve: "@=mutation('NewPlace')"
+      place_new:
+        type: "Place!"
+        args:
+            place:
+              type: "PlaceInput!"
+        resolve: "@=mutation('placeNew', [args['place']])"
+        description: >
+          Add new place.
