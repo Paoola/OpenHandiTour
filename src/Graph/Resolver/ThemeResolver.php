@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Graph\Resolver;
 
 
@@ -37,7 +38,7 @@ class ThemeResolver implements ResolverInterface, AliasedInterface
     public static function getAliases(): array
     {
         return [
-            'resolve' => 'Theme',
+            'resolve' => 'Theme' ,
         ];
     }
 }

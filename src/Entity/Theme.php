@@ -70,5 +70,4 @@ class Theme
         return $this;
 
     }
-
 }
