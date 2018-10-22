@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Graph\Mutation;
 
 use App\Entity\Place;
@@ -6,21 +7,17 @@ use Doctrine\ORM\EntityManagerInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\MutationInterface;
 
-class PlaceMutation implements MutationInterface, AliasedInterface
+class PlaceMutation extends AbstractMutation implements MutationInterface , AliasedInterface
 {
-    private $em;
 
-    public function __construct(EntityManagerInterface $em)
-    {
-        $this->em = $em;
-    }
     /**
      * {@inheritdoc}
      */
     public static function getAliases(): array
     {
         return [
-            'new' => 'placeNew',
+            'new' => 'placeNew' ,
+            'placeEdit' => 'placeEdit' ,
         ];
     }
 
@@ -33,6 +30,29 @@ class PlaceMutation implements MutationInterface, AliasedInterface
 
         $this->em->persist($place);
         $this->em->flush();
+
+        return $place;
+    }
+
+    /**
+     * @param array $data
+     * @param string $placeId
+     * @return null|object
+     */
+    public function placeEdit(array $data , string $placeId)
+    {
+        $place = $this->findEntity($placeId , Place::class);
+
+        $place->setName($data['name']);
+        $place->setAddress($data['address']);
+        $place->setHandicapMoteur($data['handicap_moteur']);
+
+        $this->validate($place);
+
+        $this->em->persist($place);
+        $this->em->flush();
+
+        $this->em->refresh($place);
 
         return $place;
     }
