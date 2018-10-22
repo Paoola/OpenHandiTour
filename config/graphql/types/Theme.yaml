@@ -8,3 +8,12 @@ Theme:
         type: "String!"
       value:
         type: "String!"
+
+ThemeInput:
+  type: "input-object"
+  config:
+    fields:
+      name:
+        type: "String!"
+      value:
+        type: "String!"
