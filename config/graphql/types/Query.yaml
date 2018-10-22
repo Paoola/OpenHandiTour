@@ -16,3 +16,7 @@ Query:
       places:
         type: "[Place]!"
         resolve: "@=resolver('entities', ['Place'])"
+
+      themes:
+        type: "[Theme]!"
+        resolve: "@=resolver('entities', ['Theme'])"
