@@ -41,3 +41,12 @@ Mutation:
         resolve: "@=mutation('placeEdit', [args['place'], args['placeId']])"
         description: >
           Edit Place infos.
+
+      place_theme:
+        type: "Theme!"
+        args:
+            theme:
+              type: "ThemeInput!"
+        resolve: "@=mutation('placeTheme', [args['theme']])"
+        description: >
+          Edit theme infos.
