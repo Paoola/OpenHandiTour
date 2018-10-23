@@ -34,6 +34,11 @@ class Theme
      */
     protected $value;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Place", inversedBy="themes")
+     * @var Place
+     */
+    protected $place;
 
     public function getId()
     {

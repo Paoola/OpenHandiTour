@@ -3,6 +3,7 @@
 # src/AppBundle/Entity/Place.php
 
 namespace App\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -16,6 +17,17 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Place
 {
+    /**
+     * @ORM\OneToMany(targetEntity="Theme", mappedBy="place")
+     * @var Theme[]
+     */
+    protected $themes;
+
+    public function __construct()
+    {
+        $this->themes = new ArrayCollection();
+    }
+
     /**
      * @ORM\Column(type="guid")
      * @ORM\Id
@@ -126,6 +138,22 @@ class Place
     public function setCreatedAt($created_at)
     {
         $this->created_at = $created_at;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getThemes()
+    {
+        return $this->themes;
+    }
+
+    /**
+     * @param mixed $themes
+     */
+    public function setThemes($themes)
+    {
+        $this->themes = $themes;
     }
 
 }
