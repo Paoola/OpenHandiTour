@@ -3,7 +3,7 @@
 namespace App\Graph\Mutation;
 
 use App\Entity\Place;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Theme;
 use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\MutationInterface;
 
@@ -18,6 +18,7 @@ class PlaceMutation extends AbstractMutation implements MutationInterface , Alia
         return [
             'new' => 'placeNew' ,
             'placeEdit' => 'placeEdit' ,
+            'placeLinkTheme' => 'placeLinkTheme' ,
         ];
     }
 
@@ -50,6 +51,29 @@ class PlaceMutation extends AbstractMutation implements MutationInterface , Alia
         $this->validate($place);
 
         $this->em->persist($place);
+        $this->em->flush();
+
+        $this->em->refresh($place);
+
+        return $place;
+    }
+
+    /**
+     * @param string $placeId
+     * @param string $themeId
+     * @return null|object
+     */
+    public function placeLinkTheme(string $placeId , string $themeId)
+    {
+        $place = $this->findEntity($placeId , Place::class);
+        $theme = $this->findEntity($themeId , Theme::class);
+
+        $place->addTheme($theme);
+
+        $this->validate($place);
+
+        $this->em->persist($place);
+        $this->em->persist($theme);
         $this->em->flush();
 
         $this->em->refresh($place);

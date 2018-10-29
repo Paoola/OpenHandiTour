@@ -50,3 +50,12 @@ Mutation:
         resolve: "@=mutation('placeTheme', [args['theme']])"
         description: >
           Edit theme infos.
+
+      place_link_theme:
+        type: "Place!"
+        args:
+          placeId:
+             type: "Uuid!"
+          themeId:
+             type: "Uuid!"
+        resolve: "@=mutation('placeLinkTheme', [args['placeId'], args['themeId']])"
