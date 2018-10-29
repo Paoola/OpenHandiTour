@@ -1,5 +1,5 @@
 # OpenHandiTour
-The OpenHandiTour application repository
+The OpenHandiTour is a graphql api which lists several places (monuments, leisure centers, castles, etc.) and makes suggestions for outings / visits to people with disabilities.
 
 ## Install application
 * Install Docker => https://docs.docker.com/docker-for-mac/install/
