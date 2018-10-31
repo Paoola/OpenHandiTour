@@ -16,3 +16,6 @@ The OpenHandiTour is a graphql api which lists several places (monuments, leisur
 
 ## URL
 * http://127.0.0.1
+
+## Example Queries
+* https://gist.github.com/Paoola/342797b7022ff8d732e2eeee222a64cb
