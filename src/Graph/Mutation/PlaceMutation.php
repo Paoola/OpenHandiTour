@@ -19,6 +19,7 @@ class PlaceMutation extends AbstractMutation implements MutationInterface , Alia
             'new' => 'placeNew' ,
             'placeEdit' => 'placeEdit' ,
             'placeLinkTheme' => 'placeLinkTheme' ,
+            'getPlaceByTheme' => 'getPlaceByTheme',
         ];
     }
 
@@ -68,15 +69,26 @@ class PlaceMutation extends AbstractMutation implements MutationInterface , Alia
         $place = $this->findEntity($placeId , Place::class);
         $theme = $this->findEntity($themeId , Theme::class);
 
-        $place->addTheme($theme);
+        $theme->addPlace($place);
+        $place->setThemes($theme);
 
         $this->validate($place);
 
         $this->em->persist($place);
-        $this->em->persist($theme);
         $this->em->flush();
 
         $this->em->refresh($place);
+
+        return $place;
+    }
+
+    /**
+     * @param string $placeId
+     * @return mixed
+     */
+    public function getPlaceByTheme(string $placeId)
+    {
+        $place = $this->findEntity($placeId , Place::class);
 
         return $place;
     }

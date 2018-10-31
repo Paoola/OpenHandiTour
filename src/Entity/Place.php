@@ -18,17 +18,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Place
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Theme", inversedBy="place")
+     * @ORM\ManyToOne(targetEntity="Theme", inversedBy="places", cascade={"persist"})
      * @ORM\JoinColumn(name="themes_id", referencedColumnName="id")
      * @var Theme[]
      *
      */
     protected $themes;
-
-    public function __construct()
-    {
-        $this->themes = new ArrayCollection();
-    }
 
     /**
      * @ORM\Column(type="guid")
@@ -145,7 +140,7 @@ class Place
     /**
      * @return mixed
      */
-    public function getThemes()
+    public function getThemes(): Theme
     {
         return $this->themes;
     }
@@ -156,29 +151,6 @@ class Place
     public function setThemes($themes)
     {
         $this->themes = $themes;
-    }
-
-    /**
-     * @param Theme $theme
-     * @return Place
-     */
-    public function addTheme(Theme $theme) : Place
-    {
-        $theme->setPlace($this);
-
-        if (!$this->themes->contains($theme)) {
-            $this->themes->add($theme);
-        }
-
-        return $this;
-    }
-
-    public function removeTheme(Theme $theme): Place
-    {
-        $this->themes->removeElement($theme);
-        $theme->setPlace(null);
-
-        return $this;
     }
 
 }

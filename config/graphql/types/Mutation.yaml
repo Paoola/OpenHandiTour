@@ -59,3 +59,15 @@ Mutation:
           themeId:
              type: "Uuid!"
         resolve: "@=mutation('placeLinkTheme', [args['placeId'], args['themeId']])"
+        description: >
+          Add a theme to a place.
+
+      getPlaceByTheme:
+        type: "Place!"
+        args:
+          placeId:
+             type: "Uuid!"
+        resolve: "@=mutation('getPlaceByTheme', [args['placeId']])"
+        description: >
+          Get a place by id.
+

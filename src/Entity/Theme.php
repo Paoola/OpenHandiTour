@@ -39,11 +39,11 @@ class Theme
      * @ORM\OneToMany(targetEntity="Place", mappedBy="themes")
      * @var Place
      */
-    protected $place;
+    protected $places;
 
     public function __construct()
     {
-        $this->place = new ArrayCollection();
+        $this->places = new ArrayCollection();
     }
 
     public function getId()
@@ -82,19 +82,38 @@ class Theme
 
     }
 
-    /**
-     * @return Place
-     */
-    public function getPlace(): Place
+
+    public function addPlace(Place $place): self
     {
-        return $this->place;
+        if (!$this->places->contains($place)) {
+            $this->places[] = $place;
+        }
+
+        return $this;
+    }
+
+    public function removePlace(Place $place): self
+    {
+        $this->places->removeElement($place);
+        $this->setPlaces(null);
+
+        return $this;
     }
 
     /**
-     * @param Place $place
+     * @return Place
      */
-    public function setPlace(Place $place)
+    public function getPlaces(): Place
     {
-        $this->place = $place;
+        return $this->places;
+    }
+
+    /**
+     * @param Place $places
+     */
+    public function setPlaces(Place $places)
+    {
+        $this->places = $places;
     }
 }
+
