@@ -10,6 +10,8 @@ Place:
         type: "String!"
       handicap_moteur:
         type: "String!"
+      themes:
+        type: "Theme"
 
 PlaceInput:
   type: "input-object"
@@ -21,3 +23,4 @@ PlaceInput:
         type: "String!"
       handicap_moteur:
         type: "String!"
+

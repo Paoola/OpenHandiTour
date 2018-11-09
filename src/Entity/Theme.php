@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -10,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity()
  * @ORM\Table(name="theme",
- *      uniqueConstraints={@ORM\UniqueConstraint(name="themes_name_place_unique", columns={"name", "place_id"})}
+ *      uniqueConstraints={@ORM\UniqueConstraint(name="themes_name_place_unique", columns={"name"})}
  * )
  */
 class Theme
@@ -34,6 +35,16 @@ class Theme
      */
     protected $value;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Place", mappedBy="themes")
+     * @var Place
+     */
+    protected $places;
+
+    public function __construct()
+    {
+        $this->places = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -70,4 +81,39 @@ class Theme
         return $this;
 
     }
+
+
+    public function addPlace(Place $place): self
+    {
+        if (!$this->places->contains($place)) {
+            $this->places[] = $place;
+        }
+
+        return $this;
+    }
+
+    public function removePlace(Place $place): self
+    {
+        $this->places->removeElement($place);
+        $this->setPlaces(null);
+
+        return $this;
+    }
+
+    /**
+     * @return Place
+     */
+    public function getPlaces(): Place
+    {
+        return $this->places;
+    }
+
+    /**
+     * @param Place $places
+     */
+    public function setPlaces(Place $places)
+    {
+        $this->places = $places;
+    }
 }
+
