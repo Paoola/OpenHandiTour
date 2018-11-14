@@ -1,6 +1,7 @@
 <?php
 namespace App\Graph\Mutation;
 
+use App\Entity\Place;
 use App\Entity\User;
 use App\Entity\UserPhoneNumber;
 use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;

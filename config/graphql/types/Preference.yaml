@@ -1,0 +1,15 @@
+Preference:
+  type: "object"
+  config:
+    fields:
+      id:
+        type: "Uuid!"
+      name:
+        type: "String!"
+
+PreferenceInput:
+  type: "input-object"
+  config:
+    fields:
+      name:
+        type: "String!"
