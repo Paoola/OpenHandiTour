@@ -16,11 +16,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Preference
 {
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="preferences")
-     * @var User
-     */
-    protected $user;
 
     /**
      * @ORM\Column(type="guid")

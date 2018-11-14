@@ -1,6 +1,7 @@
 <?php
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -133,5 +134,59 @@ class User
     {
         $this->data = $data;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPreferences()
+    {
+        return $this->preferences;
+    }
+
+    /**
+     * @param mixed $preferences
+     */
+    public function setPreferences($preferences)
+    {
+        $this->preferences = $preferences;
+    }
+
+    /**
+     * @param Preference $preference
+     * @return $this
+     */
+    public function addPreference(\App\Entity\Preference $preference)
+    {
+        $this->preferences[] = $preference;
+
+        return $this;
+    }
+
+    /**
+     * Remove preference
+     *
+     * @param \App\Entity\Preference $preference
+     */
+    public function removePreference(\App\Entity\Preference $preference)
+    {
+        $this->preferences->removeElement($preference);
+    }
+
+    /**
+     * @return bool
+     */
+    public function preferencesMatch($themes)
+    {
+        $matchValue = 0;
+        foreach ($this->preferences as $preference) {
+            foreach ($this->theme as $theme) {
+
+                if ($preference->match($theme)) {
+                    $matchValue += $preference->getValue() * $theme->getValue();
+                }
+            }
+        }
+        return  $matchValue >= self::MATCH_VALUE_THRESHOLD;
     }
 }
