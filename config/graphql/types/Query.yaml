@@ -20,3 +20,7 @@ Query:
       themes:
         type: "[Theme]!"
         resolve: "@=resolver('entities', ['Theme'])"
+
+      preferences:
+        type: "[Preference]!"
+        resolve: "@=resolver('entities', ['Preference'])"

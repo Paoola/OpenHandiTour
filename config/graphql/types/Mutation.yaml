@@ -71,3 +71,11 @@ Mutation:
         description: >
           Get a place by id.
 
+      newPreference:
+        type: "Preference!"
+        args:
+            preference:
+              type: "PreferenceInput!"
+        resolve: "@=mutation('newPreference', [args['preference']])"
+        description: >
+          Add new a preference.

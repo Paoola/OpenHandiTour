@@ -17,15 +17,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Theme
 {
     /**
-     * @ORM\Column(type="guid")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @Assert\Uuid
-     * @var string
-     */
-    private $id;
-
-    /**
      * @ORM\Column(type="string")
      */
     protected $name;
@@ -41,16 +32,32 @@ class Theme
      */
     protected $places;
 
+    /**
+     * @ORM\Column(type="guid")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @Assert\Uuid
+     * @var string
+     */
+    private $id;
+
     public function __construct()
     {
         $this->places = new ArrayCollection();
     }
 
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @param $id
+     * @return $this
+     */
     public function setId($id)
     {
         $this->id = $id;
