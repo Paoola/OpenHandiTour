@@ -85,4 +85,4 @@ RUN sed -i "s/;date.timezone =/date.timezone = UTC/" /etc/php/7.2/cli/php.ini \
 # Run Apache
 ADD run.sh /run.sh
 
-CMD ["/run.sh"]
+CMD ["/bin/bash", "/run.sh"]
