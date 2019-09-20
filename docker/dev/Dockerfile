@@ -55,7 +55,7 @@ WORKDIR /openhanditour
 
 RUN rm -f /etc/apache2/sites-enabled/000-default.conf
 
-EXPOSE 80
+EXPOSE 83
 
 RUN sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
 RUN a2enmod headers
